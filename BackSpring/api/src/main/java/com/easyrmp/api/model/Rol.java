@@ -13,6 +13,7 @@ import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
 @Table(name = "roles")
@@ -28,5 +29,6 @@ public class Rol {
 
     @OneToMany(mappedBy = "rol")
     @JsonManagedReference
+    @ToString.Exclude
     private List<Usuario> listaUsuarios;
 }

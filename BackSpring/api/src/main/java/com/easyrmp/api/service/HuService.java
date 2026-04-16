@@ -18,44 +18,46 @@ public class HuService {
         return ResponseEntity.ok(huRepository.findAll());
     }
 
-    public ResponseEntity<?> usuarioPorSSCC(Long sscc) {
+    public ResponseEntity<?> huPorSSCC(Long sscc) {
 
         Hu hu = huRepository.findById(sscc).orElse(null);
         if (hu != null){
-            return new ResponseEntity<>(hu, HttpStatus.OK);
+            return new ResponseEntity<>("HU encontrada: " + hu, HttpStatus.OK);
         }else{
-            return new ResponseEntity<>(hu, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("HU no encontrada con SSCC" + sscc, HttpStatus.NOT_FOUND);
         }
     }
 
     public ResponseEntity<?> addHu(Hu nuevaHu) {
 
         if (huRepository.existsById(nuevaHu.getSscc())){
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>("Error: HU ya registrada con SSCC " + nuevaHu.getSscc(),HttpStatus.INTERNAL_SERVER_ERROR);
         }else{
             huRepository.save(nuevaHu);
-            return new ResponseEntity<>(nuevaHu, HttpStatus.OK);
+            return new ResponseEntity<>("HU registrada con exito: " + nuevaHu, HttpStatus.OK);
         }
     }
 
-    public ResponseEntity<?> eliminarHu(Hu hu) {
+    public ResponseEntity<?> eliminarHu(Long sscc) {
 
-        if (huRepository.existsById(hu.getSscc())){
+        Hu hu = huRepository.findById(sscc).orElse(null);
+
+        if (hu != null){
             huRepository.delete(hu);
-            return new ResponseEntity<>(hu, HttpStatus.OK);
+            return new ResponseEntity<>("HU eliminada con exito: " + hu, HttpStatus.OK);
         }else{
-            return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
+            return new ResponseEntity<>("No se ha encontrado ninguna HU con el SSCC " + sscc,HttpStatus.NOT_ACCEPTABLE);
         }
     }
 
-    public ResponseEntity<?> editarHu(Long sscc, Hu hu) {
+    public ResponseEntity<?> editarHu(Long sscc, Hu huEditada) {
 
         if (huRepository.existsById(sscc)){
-            huRepository.save(hu);
-            return new ResponseEntity<>(hu, HttpStatus.OK);
+            huRepository.save(huEditada);
+            return new ResponseEntity<>("HU modificada con exito: " + huEditada, HttpStatus.OK);
         }
 
-        return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+        return new ResponseEntity<>("No existe ninguna HU con SSCC " + sscc,HttpStatus.NOT_MODIFIED);
     }
 
 }

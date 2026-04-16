@@ -36,9 +36,9 @@ public class UsuarioController {
         return usuariosService.anyadirUsuario(nuevoUsuario);
     }
 
-    @PostMapping("/delete")
-    public ResponseEntity<?> eliminarUsuario(@RequestBody Usuario usuario) {
-        return usuariosService.eliminarUsuario(usuario);
+    @PostMapping("/delete/{dni}")
+    public ResponseEntity<?> eliminarUsuario(@PathVariable String dni) {
+        return usuariosService.eliminarUsuario(dni);
     }
     
     @PutMapping("/edit/{dni}")

@@ -26,8 +26,8 @@ public class HuController {
     }
 
     @GetMapping("/{sscc}")
-    public ResponseEntity<?> usuarioPorSSCC(@PathVariable Long sscc) {
-        return huService.usuarioPorSSCC(sscc);
+    public ResponseEntity<?> huPorSSCC(@PathVariable Long sscc) {
+        return huService.huPorSSCC(sscc);
     }
     
 
@@ -37,8 +37,8 @@ public class HuController {
     }
 
     @PostMapping("/delete")
-    public ResponseEntity<?> eliminarHu(@RequestBody Hu hu) {
-        return huService.eliminarHu(hu);
+    public ResponseEntity<?> eliminarHu(@RequestBody Long sscc) {
+        return huService.eliminarHu(sscc);
     }
     
     @PutMapping("/edit/{sscc}")

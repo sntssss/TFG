@@ -22,40 +22,47 @@ public class UsuarioService {
         
         Usuario usuario = usuariosRepository.findById(dni).orElse(null);
         if (usuario != null){
-            return new ResponseEntity<>(usuario, HttpStatus.OK);
+            return new ResponseEntity<>("Usuario encontrado: " + usuario, HttpStatus.OK);
         }else{
-            return new ResponseEntity<>(usuario, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Usuario no encontrado: " + usuario, HttpStatus.NOT_FOUND);
         }
     }
 
     public ResponseEntity<?> anyadirUsuario(Usuario nuevoUsuario){
 
         if (usuariosRepository.existsById(nuevoUsuario.getDni())){
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>("El DNI ya esta en uso: " + nuevoUsuario.getDni(),HttpStatus.INTERNAL_SERVER_ERROR);
         }else{
             usuariosRepository.save(nuevoUsuario);
-            return new ResponseEntity<>(nuevoUsuario, HttpStatus.OK);
+            return new ResponseEntity<>("Usuario guardado: " + nuevoUsuario, HttpStatus.OK);
         }
     }
 
-    public ResponseEntity<?> eliminarUsuario(Usuario usuario){
+    public ResponseEntity<?> eliminarUsuario(String dni){
         
-        if (usuariosRepository.existsById(usuario.getDni())){
+        Usuario usuario = usuariosRepository.findById(dni).orElse(null);
+
+        if (usuario != null){
             usuariosRepository.delete(usuario);
-            return new ResponseEntity<>(usuario, HttpStatus.OK);
+            return new ResponseEntity<>("Usuario eliminado: " + usuario, HttpStatus.OK);
         }else{
-            return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
+            return new ResponseEntity<>("No se ha encontrado ningun usuario con DNI " + dni,HttpStatus.NOT_ACCEPTABLE);
         }
 
     }
 
-    public ResponseEntity<?> editarUsuario(String dni, Usuario usuario){
-        
-        if (usuariosRepository.existsById(dni)){
-            usuariosRepository.save(usuario);
-            return new ResponseEntity<>(usuario, HttpStatus.OK);
+    public ResponseEntity<?> editarUsuario(String dni, Usuario usuarioEditado) {
+
+        if (!usuariosRepository.existsById(dni)) {
+            return new ResponseEntity<>("No se ha encontrado el usuario con DNI " + dni, HttpStatus.NOT_FOUND);
         }
 
-        return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+        // Si el DNI ha cambiado, eliminamos el registro viejo
+        if (!dni.equals(usuarioEditado.getDni())) {
+            usuariosRepository.deleteById(dni);
+        }
+
+        usuariosRepository.save(usuarioEditado);
+        return new ResponseEntity<>("Usuario editado correctamente: " + usuarioEditado, HttpStatus.OK);
     }
 }

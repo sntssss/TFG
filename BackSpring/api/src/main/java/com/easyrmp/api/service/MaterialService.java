@@ -18,25 +18,25 @@ public class MaterialService {
         return ResponseEntity.ok(materialRepository.findAll());
     }
 
-    public ResponseEntity<?> nuevoMaterial(Material nuevoMaterial) {
+    public ResponseEntity<?> nuevoMaterial(Material material) {
         
-        if (materialRepository.findByNombre(nuevoMaterial.getNombre()).isPresent()){
+        if (materialRepository.findByNombre(material.getNombre()).isPresent()){
             return new ResponseEntity<>("Ya existe un material con este nombre.", HttpStatus.CONFLICT);
         }
 
-        Material guardado = materialRepository.save(nuevoMaterial);
+        Material guardado = materialRepository.save(material);
 
-        return new ResponseEntity<>(guardado, HttpStatus.OK);
+        return new ResponseEntity<>("Material guardado: " + guardado, HttpStatus.OK);
 
     }
 
     public ResponseEntity<?> eliminarMaterial(Material material) {
         
-        if (materialRepository.existsById(material.getId())){
+        if (materialRepository.findByNombre(material.getNombre()).isPresent()){
             materialRepository.delete(material);
-            return new ResponseEntity<>(material, HttpStatus.OK);
+            return new ResponseEntity<>("Material eliminado: " + material, HttpStatus.OK);
         }else{
-            return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
+            return new ResponseEntity<>("Material no encontrado.",HttpStatus.NOT_ACCEPTABLE);
         }
 
     }
