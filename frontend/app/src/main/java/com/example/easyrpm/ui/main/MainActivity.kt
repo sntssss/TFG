@@ -1,7 +1,9 @@
 package com.example.easyrpm.ui.main
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
@@ -17,10 +19,15 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val sm = SessionManager(this)
+        val rol = sm.getRol().uppercase()
+
         findViewById<TextView>(R.id.tvBienvenida).text = "Bienvenido, ${sm.getNombre()}"
+
         findViewById<CardView>(R.id.cardNuevaRecepcion).setOnClickListener { startActivity(Intent(this, NuevaRecepcionActivity::class.java)) }
         findViewById<CardView>(R.id.cardHusPendientes).setOnClickListener { startActivity(Intent(this, HusPendientesActivity::class.java)) }
         findViewById<CardView>(R.id.cardEncontrarHU).setOnClickListener { startActivity(Intent(this, EncontrarHuActivity::class.java)) }
         findViewById<Button>(R.id.btnAjustes).setOnClickListener { startActivity(Intent(this, AjustesActivity::class.java)) }
+
+
     }
 }

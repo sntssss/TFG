@@ -19,7 +19,7 @@ data class Usuario(
     val rol: Rol? = null
 )
 
-data class Rol(val id: Long = 0, val nombre: String = "")
+data class Rol(val id: Long = 0, val nombre: String = "", val listaUsuarios: List<Any>? = null)
 data class Material(val id: Long = 0, val nombre: String = "")
 data class Ubicacion(val id: Long = 0, val nombre: String = "", val listaHu: List<HUSimple>? = null)
-data class Proveedor(val id: Long = 0, val nombre: String = "")
+data class Proveedor(val id: Long = 0, val nombre: String = "", val listaHu: List<Any>? = null)

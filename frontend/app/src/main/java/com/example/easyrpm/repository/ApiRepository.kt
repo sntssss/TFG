@@ -13,23 +13,24 @@ object ApiRepository {
         api.obtenerHus().body() ?: emptyList()
     } catch (e: Exception) { emptyList() }
 
-    // Una HU está pendiente si aún no tiene ubicacion asignada
-    suspend fun getHusPendientes(): List<HU> = getHus().filter { it.ubicacion == null }
+    suspend fun getHusPendientes(): List<HU> {
+        val todasHus = getHus()
+        val ubicaciones = getUbicaciones()
+        val ssccsConUbicacion = ubicaciones.flatMap { it.listaHu ?: emptyList() }.map { it.sscc }.toSet()
+        return todasHus.filter { it.sscc !in ssccsConUbicacion }
+    }
 
     suspend fun addHu(hu: HU): String? = try {
-        val response = api.addHu(hu)
-        if (response.isSuccessful) null
-        else response.errorBody()?.string() ?: "Error al registrar la HU"
-    } catch (e: Exception) { e.message ?: "Error de red" }
+        val r = api.addHu(hu)
+        if (r.isSuccessful) null else r.errorBody()?.string() ?: "Error"
+    } catch (e: Exception) { null }
 
     suspend fun eliminarHu(sscc: Long): Boolean = try {
         api.eliminarHu(sscc).isSuccessful
     } catch (e: Exception) { false }
 
     suspend fun asignarUbicacion(hu: HU, ubicacion: Ubicacion): Boolean = try {
-        val ubSinLista = ubicacion.copy(listaHu = null)
-        val huActualizada = hu.copy(ubicacion = ubSinLista)
-        api.editarHu(hu.sscc, huActualizada).isSuccessful
+        api.editarHu(hu.sscc, hu.copy(ubicacion = ubicacion)).isSuccessful
     } catch (e: Exception) { false }
 
     suspend fun getMateriales(): List<Material> = try {
@@ -38,5 +39,9 @@ object ApiRepository {
 
     suspend fun getUbicaciones(): List<Ubicacion> = try {
         api.obtenerUbicaciones().body() ?: emptyList()
+    } catch (e: Exception) { emptyList() }
+
+    suspend fun getProveedores(): List<Proveedor> = try {
+        api.obtenerProveedores().body() ?: emptyList()
     } catch (e: Exception) { emptyList() }
 }
