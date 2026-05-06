@@ -1,0 +1,18 @@
+# Android
+frontend/app/build/
+frontend/build/
+frontend/.gradle/
+frontend/local.properties
+*.apk
+*.aab
+
+# Backend
+backend/target/
+backend/.mvn/
+
+# General
+.DS_Store
+*.class
+*.log
+.idea/
+*.iml

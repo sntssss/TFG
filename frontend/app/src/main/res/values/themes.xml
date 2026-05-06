@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Base.Theme.EasyRPM" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">#0353A4</item>
+        <item name="colorPrimaryVariant">#061A40</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="colorSecondary">#006DAA</item>
+        <item name="colorSecondaryVariant">#003559</item>
+        <item name="colorOnSecondary">#FFFFFF</item>
+        <item name="android:statusBarColor">#FFFFFF</item>
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+    <style name="Theme.EasyRPM" parent="Base.Theme.EasyRPM"/>
+</resources>
