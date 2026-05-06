@@ -8,16 +8,19 @@ import org.springframework.stereotype.Service;
 import com.easyrmp.api.model.Material;
 import com.easyrmp.api.repository.MaterialRepository;
 
+//Clase service donde se gestiona la logica de negocio
 @Service
 public class MaterialService {
 
     @Autowired
     MaterialRepository materialRepository;
 
+    //Obtiene una lista con los materiales existentes
     public ResponseEntity<?> obtenerMateriales() {
         return ResponseEntity.ok(materialRepository.findAll());
     }
 
+    //Añade un nuevo material si no existe uno con dicho nombre
     public ResponseEntity<?> nuevoMaterial(Material material) {
         
         if (materialRepository.findByNombre(material.getNombre()).isPresent()){
@@ -30,6 +33,7 @@ public class MaterialService {
 
     }
 
+    //Elimina un material, filtra por su nombre y si existe lo elimina
     public ResponseEntity<?> eliminarMaterial(Material material) {
         
         if (materialRepository.findByNombre(material.getNombre()).isPresent()){

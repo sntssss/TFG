@@ -8,16 +8,19 @@ import org.springframework.stereotype.Service;
 import com.easyrmp.api.model.Usuario;
 import com.easyrmp.api.repository.UsuarioRepository;
 
+//Clase service donde se gestiona la logica de negocio
 @Service
 public class UsuarioService {
 
     @Autowired
     UsuarioRepository usuariosRepository;
 
+    //Obtiene la lista de usuarios existente
     public ResponseEntity<?> obtenerUsuarios(){
         return ResponseEntity.ok(usuariosRepository.findAll());
     }
 
+    //Busca un usuario por su identificador (DNI)
     public ResponseEntity<?> usuarioPorDNI(String dni){
         
         Usuario usuario = usuariosRepository.findById(dni).orElse(null);
@@ -28,6 +31,7 @@ public class UsuarioService {
         }
     }
 
+    //Recibe y trata de añadir el usuario, antes comprueba que no exista ese identificador en la base de datos
     public ResponseEntity<?> anyadirUsuario(Usuario nuevoUsuario){
 
         if (usuariosRepository.existsById(nuevoUsuario.getDni())){
@@ -38,6 +42,7 @@ public class UsuarioService {
         }
     }
 
+    //Elimina un usuario segun su DNI, comprueba antes que exista
     public ResponseEntity<?> eliminarUsuario(String dni){
         
         Usuario usuario = usuariosRepository.findById(dni).orElse(null);
@@ -51,6 +56,7 @@ public class UsuarioService {
 
     }
 
+    //Edita un usuario, comprueba que dicho usuario existe con su DNI y lo modifica si asi es.
     public ResponseEntity<?> editarUsuario(String dni, Usuario usuarioEditado) {
 
         if (!usuariosRepository.existsById(dni)) {

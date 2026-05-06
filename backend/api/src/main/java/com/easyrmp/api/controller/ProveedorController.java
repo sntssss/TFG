@@ -11,12 +11,17 @@ import org.springframework.web.bind.annotation.RestController;
 import com.easyrmp.api.model.Proveedor;
 import com.easyrmp.api.service.ProveedorService;
 
+//Controlador de los proveedores con sus endpoints.
+
 @RestController
 @RequestMapping("/proveedores")
 public class ProveedorController {
 
+    //Inyectamos el service para gestionar la logica de negocio
     @Autowired
     ProveedorService proveedorService;
+
+    //Endpoints que llaman a los metodos del service que gestionan las peticiones
 
     @GetMapping()
     public ResponseEntity<?> obtenerProveedores() {

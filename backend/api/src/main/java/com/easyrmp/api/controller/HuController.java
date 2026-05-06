@@ -13,12 +13,16 @@ import org.springframework.web.bind.annotation.RestController;
 import com.easyrmp.api.model.Hu;
 import com.easyrmp.api.service.HuService;
 
+//Controlador de las HUS con sus endpoints.
 @RestController
 @RequestMapping("/hus")
 public class HuController {
 
+    //Inyectamos el service para gestionar la logica de negocio
     @Autowired
     HuService huService;
+
+    //Endpoints que llaman a los metodos del service que gestionan las peticiones
 
     @GetMapping()
     public ResponseEntity<?> obtenerHus() {

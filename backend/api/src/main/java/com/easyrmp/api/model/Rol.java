@@ -15,6 +15,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+//Clase modelo con sus propiedades y sus relaciones, para hacer el mapeo de entidad-objeto entre la base de datos y el servidor
+
 @Entity
 @Table(name = "roles")
 @Data

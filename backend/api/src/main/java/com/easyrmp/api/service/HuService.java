@@ -8,16 +8,19 @@ import org.springframework.stereotype.Service;
 import com.easyrmp.api.model.Hu;
 import com.easyrmp.api.repository.HuRepository;
 
+//Clase service donde se gestiona la logica de negocio
 @Service
 public class HuService {
 
     @Autowired
     HuRepository huRepository;
 
+    //Obtiene una lista con las HUs existentes
     public ResponseEntity<?> obtenerHus() {
         return ResponseEntity.ok(huRepository.findAll());
     }
 
+    //Busca una HU concreta segun su id (codigo SSCC) y si la encuentra devuelve el objeto entero con sus datos.
     public ResponseEntity<?> huPorSSCC(Long sscc) {
 
         Hu hu = huRepository.findById(sscc).orElse(null);
@@ -28,6 +31,7 @@ public class HuService {
         }
     }
 
+    //Añade una nueva HU que recibe como parametro, antes de eso comprueba si no existe ya en la base de datos
     public ResponseEntity<?> addHu(Hu nuevaHu) {
 
         if (huRepository.existsById(nuevaHu.getSscc())){
@@ -38,6 +42,7 @@ public class HuService {
         }
     }
 
+    //Elimina una HU, antes, comprueba que exista en la base de datos
     public ResponseEntity<?> eliminarHu(Long sscc) {
 
         Hu hu = huRepository.findById(sscc).orElse(null);
@@ -50,6 +55,7 @@ public class HuService {
         }
     }
 
+    //Edita una HU existente, mediante su sscc, busca si existe y si existe la modifica.
     public ResponseEntity<?> editarHu(Long sscc, Hu huEditada) {
 
         if (huRepository.existsById(sscc)){

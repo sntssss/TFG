@@ -13,6 +13,8 @@ import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+//Clase modelo con sus propiedades y sus relaciones, para hacer el mapeo de entidad-objeto entre la base de datos y el servidor
+
 @Entity
 @Table(name="hus")
 @Data

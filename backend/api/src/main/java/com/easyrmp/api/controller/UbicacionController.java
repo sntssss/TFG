@@ -12,12 +12,17 @@ import org.springframework.web.bind.annotation.RestController;
 import com.easyrmp.api.model.Ubicacion;
 import com.easyrmp.api.service.UbicacionService;
 
+//Controlador de las ubicaciones con sus endpoints.
+
 @RestController
 @RequestMapping("/ubicaciones")
 public class UbicacionController {
 
+    //Inyectamos el service para gestionar la logica de negocio
     @Autowired
     UbicacionService ubicacionService;
+
+    //Endpoints que llaman a los metodos del service que gestionan las peticiones
 
     @GetMapping()
     public ResponseEntity<?> obtenerUbicaciones() {

@@ -13,12 +13,17 @@ import org.springframework.web.bind.annotation.RestController;
 import com.easyrmp.api.model.Usuario;
 import com.easyrmp.api.service.UsuarioService;
 
+//Controlador de los usuarios con sus endpoints.
+
 @RestController
 @RequestMapping("/usuarios")
 public class UsuarioController {
 
+    //Inyectamos el service para gestionar la logica de negocio
     @Autowired
     UsuarioService usuariosService;
+
+    //Endpoints que llaman a los metodos del service que gestionan las peticiones
 
     @GetMapping()
     public ResponseEntity<?> obtenerUsuarios() {

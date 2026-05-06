@@ -12,6 +12,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+//Clase modelo con sus propiedades y sus relaciones, para hacer el mapeo de entidad-objeto entre la base de datos y el servidor
+
 @Entity
 @Table(name = "usuarios")
 @Data
@@ -21,6 +23,8 @@ public class Usuario {
 
     @Id
     private String dni;
+
+    private String password;
 
     private String nombre;
     

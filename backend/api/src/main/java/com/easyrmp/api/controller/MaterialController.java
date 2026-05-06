@@ -11,14 +11,17 @@ import org.springframework.web.bind.annotation.RestController;
 import com.easyrmp.api.model.Material;
 import com.easyrmp.api.service.MaterialService;
 
-
+//Controlador de los materiales con sus endpoints.
 
 @RestController
 @RequestMapping("/materiales")
 public class MaterialController {
 
+    //Inyectamos el service para gestionar la logica de negocio
     @Autowired
     MaterialService materialService;
+
+    //Endpoints que llaman a los metodos del service que gestionan las peticiones
 
     @GetMapping()
     public ResponseEntity<?> obtenerMateriales() {
