@@ -101,10 +101,10 @@ class EncontrarHuActivity : AppCompatActivity() {
         AlertDialog.Builder(this).setTitle("Dar de baja HU ${hu.sscc}").setMessage("Esta accion es irreversible.")
             .setPositiveButton("Eliminar") { _, _ ->
                 lifecycleScope.launch {
-                    val ok = ApiRepository.eliminarHu(hu.sscc)
+                    ApiRepository.eliminarHu(hu.sscc)
                     runOnUiThread {
-                        if (ok) { Toast.makeText(this@EncontrarHuActivity, "HU eliminada", Toast.LENGTH_SHORT).show(); cargarDatos() }
-                        else Toast.makeText(this@EncontrarHuActivity, "Error al eliminar", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@EncontrarHuActivity, "HU eliminada", Toast.LENGTH_SHORT).show()
+                        cargarDatos()
                     }
                 }
             }.setNegativeButton("Cancelar", null).show()
