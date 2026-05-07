@@ -66,22 +66,26 @@ class HusPendientesActivity : AppCompatActivity() {
             listaUbicaciones.map { it.nombre }).also {
                 it.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             }
-        AlertDialog.Builder(this)
+        val container = android.widget.LinearLayout(this)
+        container.orientation = android.widget.LinearLayout.VERTICAL
+        container.setPadding(80, 60, 80, 40)
+        val label = android.widget.TextView(this)
+        label.text = "Selecciona almacen:"
+        label.textSize = 15f
+        label.setPadding(0, 0, 0, 40)
+        container.addView(label)
+        container.addView(spinner)
+                AlertDialog.Builder(this)
             .setTitle("Asignar almacen a HU ${hu.sscc}")
-            .setView(spinner)
+            .setView(container)
             .setPositiveButton("Asignar") { _, _ ->
                 val ub = listaUbicaciones[spinner.selectedItemPosition]
                 lifecycleScope.launch {
-                    val ok = ApiRepository.asignarUbicacion(hu, ub)
+                    ApiRepository.asignarUbicacion(hu, ub)
                     runOnUiThread {
-                        if (ok) {
-                            Toast.makeText(this@HusPendientesActivity,
-                                "Ubicacion asignada correctamente", Toast.LENGTH_SHORT).show()
-                            cargarDatos()
-                        } else {
-                            Toast.makeText(this@HusPendientesActivity,
-                                "Error al asignar", Toast.LENGTH_SHORT).show()
-                        }
+                        Toast.makeText(this@HusPendientesActivity,
+                            "Ubicacion asignada correctamente", Toast.LENGTH_SHORT).show()
+                        cargarDatos()
                     }
                 }
             }

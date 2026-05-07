@@ -1,253 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#F5F8FC"
-    android:padding="24dp">
+    android:padding="16dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center_vertical"
-        android:layout_marginBottom="32dp">
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
-            <TextView
-                android:id="@+id/tvBienvenida"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Hola"
-                android:textSize="22sp"
-                android:textStyle="bold"
+        android:layout_marginBottom="16dp">
+        <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+            android:layout_weight="1" android:orientation="vertical">
+            <TextView android:id="@+id/tvBienvenida"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Hola" android:textSize="22sp" android:textStyle="bold"
                 android:textColor="#061A40"/>
-            <TextView
-                android:id="@+id/tvRol"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="13sp"
-                android:textColor="#5F5E5A"/>
+            <TextView android:id="@+id/tvRol"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:textSize="13sp" android:textColor="#5F5E5A"/>
         </LinearLayout>
-
-        <ImageView
-            android:layout_width="56dp"
-            android:layout_height="56dp"
-            android:src="@drawable/logo_easyrpm"
-            android:scaleType="fitCenter"/>
+        <ImageView android:layout_width="56dp" android:layout_height="56dp"
+            android:src="@drawable/logo_easyrpm" android:scaleType="fitCenter"/>
     </LinearLayout>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardNuevaRecepcion"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        app:cardCornerRadius="12dp"
-        app:cardElevation="2dp">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:padding="20dp">
-            <TextView
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:text="📦"
-                android:textSize="24sp"
-                android:gravity="center"
-                android:layout_marginEnd="16dp"/>
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Nueva recepción"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:textColor="#061A40"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Registrar nueva HU"
-                    android:textSize="13sp"
-                    android:textColor="#5F5E5A"/>
-            </LinearLayout>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="›"
-                android:textSize="24sp"
-                android:textColor="#0353A4"/>
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginBottom="12dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="4dp"
+        app:cardBackgroundColor="#FFFFFF">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
+            android:orientation="vertical" android:gravity="center" android:padding="24dp">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="📦" android:textSize="48sp" android:gravity="center"
+                android:layout_marginBottom="12dp"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Nueva Recepcion" android:textSize="20sp" android:textStyle="bold"
+                android:textColor="#061A40" android:gravity="center"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Registrar nueva HU" android:textSize="14sp"
+                android:textColor="#5F5E5A" android:gravity="center"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardHusPendientes"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        app:cardCornerRadius="12dp"
-        app:cardElevation="2dp">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:padding="20dp">
-            <TextView
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:text="⏳"
-                android:textSize="24sp"
-                android:gravity="center"
-                android:layout_marginEnd="16dp"/>
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="HUs pendientes"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:textColor="#061A40"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Asignar ubicación"
-                    android:textSize="13sp"
-                    android:textColor="#5F5E5A"/>
-            </LinearLayout>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="›"
-                android:textSize="24sp"
-                android:textColor="#0353A4"/>
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginBottom="12dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="4dp"
+        app:cardBackgroundColor="#FFFFFF">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
+            android:orientation="vertical" android:gravity="center" android:padding="24dp">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="⏳" android:textSize="48sp" android:gravity="center"
+                android:layout_marginBottom="12dp"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="HUs Pendientes" android:textSize="20sp" android:textStyle="bold"
+                android:textColor="#061A40" android:gravity="center"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Asignar ubicacion" android:textSize="14sp"
+                android:textColor="#5F5E5A" android:gravity="center"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardEncontrarHU"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        app:cardCornerRadius="12dp"
-        app:cardElevation="2dp">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:padding="20dp">
-            <TextView
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:text="🔍"
-                android:textSize="24sp"
-                android:gravity="center"
-                android:layout_marginEnd="16dp"/>
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Encontrar HU"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:textColor="#061A40"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Buscar y filtrar inventario"
-                    android:textSize="13sp"
-                    android:textColor="#5F5E5A"/>
-            </LinearLayout>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="›"
-                android:textSize="24sp"
-                android:textColor="#0353A4"/>
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginBottom="12dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="4dp"
+        app:cardBackgroundColor="#FFFFFF">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
+            android:orientation="vertical" android:gravity="center" android:padding="24dp">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="🔍" android:textSize="48sp" android:gravity="center"
+                android:layout_marginBottom="12dp"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Encontrar HU" android:textSize="20sp" android:textStyle="bold"
+                android:textColor="#061A40" android:gravity="center"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Buscar y filtrar inventario" android:textSize="14sp"
+                android:textColor="#5F5E5A" android:gravity="center"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardRegistrarUsuario"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:visibility="gone"
-        app:cardCornerRadius="12dp"
-        app:cardElevation="2dp">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:padding="20dp">
-            <TextView
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:text="👤"
-                android:textSize="24sp"
-                android:gravity="center"
-                android:layout_marginEnd="16dp"/>
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Registrar usuario"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:textColor="#061A40"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Alta de operarios"
-                    android:textSize="13sp"
-                    android:textColor="#5F5E5A"/>
-            </LinearLayout>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="›"
-                android:textSize="24sp"
-                android:textColor="#006DAA"/>
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-
-    <View
-        android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"/>
+        android:layout_weight="0"
+        android:visibility="gone"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="4dp"/>
 
     <Button
         android:id="@+id/btnAjustes"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="⚙ Ajustes"
+        android:layout_height="56dp"
+        android:text="Ajustes"
         android:backgroundTint="#B9D6F2"
         android:textColor="#0353A4"
-        android:padding="14dp"/>
-
+        android:textSize="16sp"
+        android:layout_marginTop="4dp"/>
 </LinearLayout>

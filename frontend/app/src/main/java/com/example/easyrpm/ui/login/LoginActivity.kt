@@ -15,6 +15,7 @@ import kotlinx.coroutines.launch
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var etUsuario: TextInputEditText
+    private lateinit var etPassword: TextInputEditText
     private lateinit var btnLogin: Button
     private lateinit var tvError: TextView
     private lateinit var sessionManager: SessionManager
@@ -24,29 +25,32 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
         sessionManager = SessionManager(this)
         if (sessionManager.estaLogado()) { irAlMenu(); return }
-        etUsuario = findViewById(R.id.etUsuario)
-        btnLogin  = findViewById(R.id.btnLogin)
-        tvError   = findViewById(R.id.tvError)
+        etUsuario  = findViewById(R.id.etUsuario)
+        etPassword = findViewById(R.id.etPassword)
+        btnLogin   = findViewById(R.id.btnLogin)
+        tvError    = findViewById(R.id.tvError)
         btnLogin.setOnClickListener {
-            intentarLogin(etUsuario.text.toString().trim())
+            intentarLogin(etUsuario.text.toString().trim(), etPassword.text.toString())
         }
     }
 
-    private fun intentarLogin(dni: String) {
-        if (dni.isEmpty()) {
-            tvError.text = "Introduce tu DNI"; tvError.visibility = View.VISIBLE; return
+    private fun intentarLogin(dni: String, password: String) {
+        if (dni.isEmpty() || password.isEmpty()) {
+            tvError.text = "Rellena todos los campos"
+            tvError.visibility = View.VISIBLE; return
         }
         btnLogin.isEnabled = false; tvError.visibility = View.GONE
         lifecycleScope.launch {
-            val usuario = ApiRepository.login(dni)
+            val usuario = ApiRepository.login(dni, password)
             runOnUiThread {
                 btnLogin.isEnabled = true
                 if (usuario != null) {
                     sessionManager.guardarSesion(usuario.dni, usuario.nombre, usuario.rol?.nombre ?: "OPERARIO")
                     irAlMenu()
                 } else {
-                    tvError.text = "DNI no encontrado o sin conexion al servidor"
+                    tvError.text = "DNI o contrasena incorrectos"
                     tvError.visibility = View.VISIBLE
+                    etPassword.setText("")
                 }
             }
         }

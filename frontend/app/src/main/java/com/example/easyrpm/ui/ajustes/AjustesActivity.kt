@@ -20,16 +20,32 @@ class AjustesActivity : AppCompatActivity() {
         val sm = SessionManager(this)
         findViewById<TextView>(R.id.tvUsuario).text = "Usuario: ${sm.getNombre()}"
         findViewById<TextView>(R.id.tvRol).text = "Rol: ${sm.getRol()}"
+
+        findViewById<LinearLayout>(R.id.layoutContacto).setOnClickListener {
+            mostrarContacto()
+        }
+
         findViewById<Button>(R.id.btnCerrarSesion).setOnClickListener {
-            AlertDialog.Builder(this).setTitle("Cerrar sesion").setMessage("Seguro que quieres salir?")
+            AlertDialog.Builder(this)
+                .setTitle("Cerrar sesion")
+                .setMessage("Seguro que quieres salir?")
                 .setPositiveButton("Si") { _, _ ->
                     sm.cerrarSesion()
                     startActivity(Intent(this, LoginActivity::class.java).apply {
                         flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     }); finish()
-                }.setNegativeButton("No", null).show()
+                }
+                .setNegativeButton("No", null).show()
         }
     }
+
+    private fun mostrarContacto() {
+        AlertDialog.Builder(this)
+            .setTitle("Contacto")
+            .setMessage("Si tienes alguna duda o problema, contacta con el equipo de soporte:\n\nsoporte@easyrpm.com")
+            .setPositiveButton("Cerrar", null).show()
+    }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == android.R.id.home) { finish(); return true }
         return super.onOptionsItemSelected(item)

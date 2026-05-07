@@ -10,18 +10,19 @@ EasyRPM_GIT/
 └ frontend/    --> App Android (Kotlin + Retrofit)
 ```
 
+## Requisitos
+
+- PostgreSQL arrancado
+- Base de datos `EasyRMP_db` creada
+- Java instalado
+- Maven instalado
+
 ## Inicializar el backend
 
-> Requisitos: PostgreSQL arrancado, se necesita la BD `EasyRMP_db` creada
-
-**Paso 1:** Abrir Terminal e ir a la carpeta del backend:
+**Paso 1:** Ir a la carpeta del backend:
 
 ```bash
-# Si tienes la carpeta en Downloads
-cd ~/Downloads/EasyRPM_GIT/backend/api
-
-# Si la tienes en otra ubicacion, ajusta la ruta
-# cd <ruta-a-tu-carpeta>/backend/api
+cd <roota-del-proyecto>/backend/api
 ```
 
 **Paso 2:** Arrancar el servidor:
@@ -30,29 +31,38 @@ cd ~/Downloads/EasyRPM_GIT/backend/api
 /opt/homebrew/bin/mvn spring-boot:run
 ```
 
-**Paso 3:** Esperar hasta ver:
+**Paso 3:** Esperar hasta ver `Started ApiApplication`
 
-```
-Started ApiApplication in X seconds
-```
-
-**Paso 4:** En otra Terminal nueva, insertar datos iniciales:
+**Paso 4:** En otra terminal, insertar datos iniciales:
 
 ```bash
-curl -X POST http://localhost:8080/materiales/add -H 'Content-Type: application/json' -d '{"nombre":"Ternera"}'
+# Usuario
+curl -X POST http://localhost:8080/usuarios/add -H 'Content-Type: application/json' -d '{"dni":"12345678A","nombre":"Carlos","apellidos":"Test","password":"1234"}'
+
+# Materiales
+curl -X POTT http://localhost:8080/materiales/add -H 'Content-Type: application/json' -d '{"nombre":"Ternera"}'
 curl -X POST http://localhost:8080/materiales/add -H 'Content-Type: application/json' -d '{"nombre":"Pollo"}'
-curl -X POST http://localhost:8080/materiales/add -H 'Content-Type: application/json' -d '{"nombre":"Cerdo"}'
-curl -X POTT http://localhost:8080/materiales/add -H 'Content-Type: application/json' -d '{"nombre":"Cordero"}'
+curl -X POTT http://localhost:8080/materiales/add -H 'Content-Type: application/json' -d '{"nombre":"Cerdo"}'
+curl -X POST http://localhost:8080/materiales/add -H 'Content-Type: application/json' -d '{"nombre":"Cordero"}'
+
+# Almacenes
 curl -X POST http://localhost:8080/ubicaciones/add -H 'Content-Type: application/json' -d '{"nombre":"Almacen 1"}'
 curl -X POST http://localhost:8080/ubicaciones/add -H 'Content-Type: application/json' -d '{"nombre":"Almacen 2"}'
 curl -X POTT http://localhost:8080/ubicaciones/add -H 'Content-Type: application/json' -d '{"nombre":"Almacen 3"}'
-curl -X POST http://localhost:8080/usuarios/add -H 'Content-Type: application/json' -d '{"dni":"12345678A","nombre":"Carlos","apellidos":"Test"}'
+
+# Proveedores
+curl -X POST http://localhost:8080/proveedores/add -H 'Content-Type: application/json' -d '{"nombre":"Proveedor 1"}'
+curl -X POST http://localhost:8080/proveedores/add -H 'Content-Type: application/json' -d '{"nombre":"Proveedor 2"}'
+curl -X POST http://localhost:8080/proveedores/add -H 'Content-Type: application/json' -d '{"nombre":"Proveedor 3"}'
 ```
 
-> Aviso: estos datos se pierden cada vez que se reinicia el servidor.
+> **Aviso:** estos datos se pierden cada vez que se reinicia el servidor.
+
+> **Credenciales por defecto:** DNI: `12345678A` | Contrasena: `1234`
 
 ## Inicializar el frontend
 
 Abrir la carpeta `frontend/` con Android Studio y pulsar Run.
 
-> La IP del backend esta configurada como `10.0.2.2:8080` para el emulador Android. Si usas dispositivo fisico, cambia esa IP por la IP local del ordenador en RetrofitClient.kt
+> La IP del backend esta configurada como `10.0.2.2:8080` para el emulador Android.
+```

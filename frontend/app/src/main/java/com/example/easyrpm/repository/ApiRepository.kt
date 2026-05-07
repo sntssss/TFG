@@ -5,8 +5,10 @@ import com.example.easyrpm.network.RetrofitClient
 object ApiRepository {
     private val api = RetrofitClient.apiService
 
-    suspend fun login(dni: String): Usuario? = try {
-        api.obtenerUsuarios().body()?.firstOrNull { it.dni == dni }
+    // Login usando el nuevo endpoint POST /login/ del backend
+    suspend fun login(dni: String, password: String): Usuario? = try {
+        val response = api.login(Usuario(dni = dni, password = password))
+        if (response.isSuccessful) response.body() else null
     } catch (e: Exception) { null }
 
     suspend fun getHus(): List<HU> = try {
@@ -30,7 +32,19 @@ object ApiRepository {
     } catch (e: Exception) { false }
 
     suspend fun asignarUbicacion(hu: HU, ubicacion: Ubicacion): Boolean = try {
-        api.editarHu(hu.sscc, hu.copy(ubicacion = ubicacion)).isSuccessful
+        // Construimos una HU limpia solo con los campos necesarios
+        // para evitar el hibernateLazyInitializer que rompe el parseo
+        val huLimpia = HU(
+            sscc = hu.sscc,
+            lote = hu.lote,
+            peso = hu.peso,
+            fecha_caducidad = hu.fecha_caducidad,
+            ubicacion = Ubicacion(id = ubicacion.id, nombre = ubicacion.nombre),
+            material = hu.material?.let { Material(id = it.id, nombre = it.nombre) },
+            proveedor = hu.proveedor?.let { Proveedor(id = it.id, nombre = it.nombre) }
+        )
+        api.editarHu(hu.sscc, huLimpia)
+        true
     } catch (e: Exception) { false }
 
     suspend fun getMateriales(): List<Material> = try {

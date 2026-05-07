@@ -16,6 +16,7 @@ data class Usuario(
     val dni: String = "",
     val nombre: String = "",
     val apellidos: String = "",
+    val password: String? = null,
     val rol: Rol? = null
 )
 
