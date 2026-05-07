@@ -18,8 +18,10 @@ class AjustesActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         val sm = SessionManager(this)
-        findViewById<TextView>(R.id.tvUsuario).text = "Usuario: ${sm.getNombre()}"
-        findViewById<TextView>(R.id.tvRol).text = "Rol: ${sm.getRol()}"
+        findViewById<TextView>(R.id.tvNombreCompleto).text = sm.getNombre()
+        findViewById<TextView>(R.id.tvTipoUsuario).text = sm.getRol()
+        findViewById<TextView>(R.id.tvTipoUsuarioBadge).text = sm.getRol()
+        findViewById<TextView>(R.id.tvDni).text = sm.getDni()
 
         findViewById<LinearLayout>(R.id.layoutContacto).setOnClickListener {
             mostrarContacto()

@@ -19,18 +19,179 @@
     <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
         android:orientation="vertical" android:padding="24dp">
 
-        <TextView android:id="@+id/tvUsuario"
-            android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:textSize="18sp" android:textColor="#061A40" android:layout_marginBottom="8dp"/>
-        <TextView android:id="@+id/tvRol"
-            android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:textSize="15sp" android:textColor="#5F5E5A" android:layout_marginBottom="32dp"/>
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="4dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <!-- ===== CABECERA MORADA ===== -->
+                <View
+                    android:id="@+id/viewHeader"
+                    android:layout_width="0dp"
+                    android:layout_height="160dp"
+                    android:background="@color/easyrpm_primary"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <!-- Imagen de perfil (circular) -->
+
+                <!-- Nombre y apellidos -->
+                <ImageView
+                    android:id="@+id/ivAvatar"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:layout_marginTop="5dp"
+                    android:contentDescription="Foto perfil"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/avatar"
+                    app:tint="@color/easyrpm_primary_light"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.497"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/viewHeader" />
+
+                <TextView
+                    android:id="@+id/tvNombreCompleto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nombre aqui"
+                    android:textColor="@android:color/white"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toBottomOf="@id/ivAvatar"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <!-- Badge: tipo de usuario -->
+                <TextView
+                    android:id="@+id/tvTipoUsuarioBadge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/bg_badge_rounded"
+                    android:paddingHorizontal="14dp"
+                    android:paddingVertical="4dp"
+                    android:text="ROL"
+                    android:textColor="#21005D"
+                    android:textSize="12sp"
+                    app:layout_constraintTop_toBottomOf="@id/tvNombreCompleto"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <!-- ===== SECCIÓN DE DATOS ===== -->
+
+                <!-- Fila DNI -->
+                <ImageView
+                    android:id="@+id/icDni"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="24dp"
+                    android:contentDescription="@null"
+                    android:src="@drawable/documento"
+                    app:tint="@color/easyrpm_primary"
+                    app:layout_constraintTop_toBottomOf="@id/tvTipoUsuarioBadge"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvLabelDni"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginEnd="20dp"
+                    android:text="DNI"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="12sp"
+                    app:layout_constraintTop_toTopOf="@id/icDni"
+                    app:layout_constraintStart_toEndOf="@id/icDni"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvDni"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginEnd="20dp"
+                    android:text="12345678A"
+                    android:textColor="?attr/colorOnSurface"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toBottomOf="@id/tvLabelDni"
+                    app:layout_constraintStart_toEndOf="@id/icDni"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <!-- Separador -->
+                <View
+                    android:id="@+id/divider1"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@android:color/darker_gray"
+                    app:layout_constraintTop_toBottomOf="@id/tvDni"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <!-- Fila Tipo de usuario -->
+                <ImageView
+                    android:id="@+id/icTipoUsuario"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="16dp"
+                    android:contentDescription="@null"
+                    android:src="@drawable/verificado"
+                    app:tint="@color/easyrpm_primary"
+                    app:layout_constraintTop_toBottomOf="@id/divider1"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvLabelTipo"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginEnd="20dp"
+                    android:text="Tipo de usuario"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="12sp"
+                    app:layout_constraintTop_toTopOf="@id/icTipoUsuario"
+                    app:layout_constraintStart_toEndOf="@id/icTipoUsuario"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvTipoUsuario"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="24dp"
+                    android:text="Rol"
+                    android:textColor="?attr/colorOnSurface"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toBottomOf="@id/tvLabelTipo"
+                    app:layout_constraintStart_toEndOf="@id/icTipoUsuario"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <View android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1"/>
 
         <TextView
             android:layout_width="wrap_content" android:layout_height="wrap_content"
             android:text="Ayuda" android:textSize="16sp" android:textStyle="bold"
             android:textColor="#061A40" android:layout_marginBottom="8dp"/>
-
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent" android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
@@ -53,8 +214,6 @@
                 </LinearLayout>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
-
-        <View android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1"/>
 
         <Button android:id="@+id/btnCerrarSesion"
             android:layout_width="match_parent" android:layout_height="wrap_content"
